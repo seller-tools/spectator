@@ -180,6 +180,11 @@ class ResponseValidator
     protected function wrapAttributesToArray($properties)
     {
         foreach ($properties as $key => $attributes) {
+            // this is not supported
+            if(isset($attributes->oneOf)) {
+                continue;
+            }
+
             if (isset($attributes->nullable)) {
                 $type = Arr::wrap($attributes->type);
                 $type[] = 'null';
